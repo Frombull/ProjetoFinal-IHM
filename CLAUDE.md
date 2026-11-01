@@ -73,7 +73,29 @@ A interface deve simular a tarefa de ponta a ponta, com simulação de input de 
   - `wireframe-v2.pdf`: baseada no app real (menu lateral, tela Notas, padrão do Plano de Ensino). Mais fiel ao app; é a recomendada para a entrega.
 - [x] Interface (entrega 3), codigo em `3-projeto-final/interface/` (HTML/CSS/JS puros + Chart.js em `vendor/`, sem build). Tema escuro do app, menu lateral, telas Avisos/Notas (com botao "simular")/lista de disciplinas/simulador (sliders, meta, alertas, 3 graficos, faltas, salvar meta em localStorage, confirmacao ao sair). `js/model.js` espelha o diagrama de classes (mesmos nomes). Painel lateral so no desktop (roteiro de teste, tamanhos de tela). Deep links: `#/notas`, `#/desempenho`, `#/simulador/M210`.
 - [x] PDF final (entrega 3): `3-projeto-final/projeto-final.pdf` (capa, User Story, Analise da Tarefa, Fluxo de Informacao + as 2 paginas do `wireframe-v2.pdf`). Gerado por `python 3-projeto-final/build.py` (precisa de Chrome e pypdf). O link do projeto fica na constante `LINK` do script.
-- [ ] Publicacao: GitHub Pages por workflow (`.github/workflows/pages.yml`, publica `3-projeto-final/interface`). Pages em repo privado nao funciona no plano gratuito, entao o repo precisa ser publico. Link previsto: https://frombull.github.io/ProjetoFinal-IHM/ (existe tambem uma copia em https://github.com/Frombull/meu-desempenho-inatel, publica, sem Pages ativado).
+- [ ] **Publicacao (PENDENTE, e o que falta para fechar o projeto).** O link do PDF (`https://frombull.github.io/ProjetoFinal-IHM/`) so funciona depois de: (1) tornar este repo publico e (2) ativar o Pages com source = GitHub Actions. O Claude Code bloqueou a mudanca de visibilidade (acao "Create Public Surface"), entao o aluno deve rodar ou autorizar:
+  - `gh repo edit Frombull/ProjetoFinal-IHM --visibility public --accept-visibility-change-consequences`
+  - `gh api -X POST repos/Frombull/ProjetoFinal-IHM/pages -f build_type=workflow`
+  - O workflow `.github/workflows/pages.yml` ja existe e publica `3-projeto-final/interface` a cada push nessa pasta. Depois conferir o link no ar (abrir no celular tambem).
+  - Motivo: Pages em repo privado nao funciona no plano gratuito. Tornar o repo publico expoe `conteudo-de-aula/` (material do professor). O aluno foi avisado e pediu para publicar neste repo mesmo.
+  - Alternativa se ele desistir de expor: ja existe a copia publica `https://github.com/Frombull/meu-desempenho-inatel` (so a interface, sem Pages ativado). Ai ativar o Pages la, trocar `LINK` em `3-projeto-final/build.py` e rodar o build. Se seguir neste repo, essa copia pode ser apagada.
+- [ ] Antes de enviar: o aluno abre o PDF e a interface (inclusive no celular) para conferir. Foram testados so em Chrome headless (360 e 390 px, desktop); do PDF so se conferiu a contagem de paginas e as paginas-slide como imagem.
+
+### Envio no Moodle (feito pelo aluno)
+- Entrega 1 (02/11 19:59): `1-fluxo-de-informacao/diagrama-de-classes.pdf`
+- Entrega 2 (09/11 19:59): `2-wireframe/wireframe-v2.pdf` (v1 mantida, nao sobrescrever)
+- Entrega 3 (27/11 19:59): `3-projeto-final/projeto-final.pdf` (avaliacao e sobre a interface publicada)
+
+### Pendencias e duvidas em aberto
+- Regras reais do Inatel (pesos 35/35/30, media 60, frequencia 75%) sao premissas; se o aluno souber as reais, ajustar `js/data.js`, `js/model.js` e os docs.
+- Interpretacao do enunciado do wireframe (so telas novas ou todas do app) ainda nao confirmada com o professor.
+- O PDF "Testes de Usabilidade" em `conteudo-de-aula/Entrega testes de usabilidade/` nunca foi lido.
+- Extensao opcional "Agendar monitoria" nao foi feita (exigiria atualizar diagrama e wireframe, ja entregues).
+- Dados do aluno na interface sao ficticios (Lucas Almeida); nao usar dados pessoais reais.
+
+### Como regerar
+- PDF final: `python 3-projeto-final/build.py` (Chrome + `pip install pypdf`). Reaproveita o diagrama (`1-fluxo-de-informacao/diagrama-de-classes.md`) e `2-wireframe/wireframe-v2.pdf`. Se a interface mudar, retirar novas capturas (`3-projeto-final/assets/tela-*.png`, 390x844, dsf 2) com puppeteer-core + Chrome antes.
+- Testar a interface: abrir `3-projeto-final/interface/index.html` direto (sem servidor). Fluxo completo: Avisos > menu > Meu Desempenho > M210 > slider/meta/faltas > Salvar.
 
 Para regerar o PDF da entrega 1: `python 1-fluxo-de-informacao/build.py` e imprimir o HTML em PDF com Chrome headless (`--print-to-pdf`, caminhos absolutos).
 
