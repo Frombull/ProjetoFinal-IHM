@@ -7,24 +7,25 @@ Notação da aula: `>` sequência, `/` alternativa (escolha), `*` repetição. P
    Plano 0: 1 > 2 > 3 > 4 > 5
 │
 ├── 1. Acessar "Meu Desempenho"
-│      Plano 1: 1.1 > 1.2
+│      Plano 1: 1.1 > (1.2 / 1.3)
 │   ├── 1.1 Abrir o App Inatel (já logado)
-│   └── 1.2 Tocar em "Desempenho" no menu inferior
+│   ├── 1.2 Abrir o menu lateral e tocar em "Meu Desempenho"
+│   └── 1.3 Atalho: na tela Notas, tocar em "simular" no card da disciplina (vai direto ao passo 4)
 │
 ├── 2. Escolher a disciplina
 │      Plano 2: 2.1 > 2.2
 │   ├── 2.1 Ver lista de disciplinas com status
-│   └── 2.2 Tocar em "Cálculo II"
+│   └── 2.2 Tocar em "M210 - Otimização I"
 │
 ├── 3. Analisar a situação atual
 │      Plano 3: 3.1 / 3.2   (em qualquer ordem)
-│   ├── 3.1 Ver gráfico de notas por avaliação
+│   ├── 3.1 Ver notas lançadas (NP1, L1 a L3)
 │   └── 3.2 Ver barra de frequência e faltas restantes
 │
 ├── 4. Simular cenário
 │      Plano 4: 4.1 > 4.2 *> 4.3
 │   ├── 4.1 Definir meta de média (padrão 60)
-│   ├── 4.2 Ajustar nota hipotética da P3 (slider)   * repete até o aluno ficar satisfeito
+│   ├── 4.2 Ajustar nota simulada da NP2 (slider)   * repete até o aluno ficar satisfeito
 │   └── 4.3 Ler nota necessária, média projetada e situação
 │
 └── 5. Agir sobre o resultado

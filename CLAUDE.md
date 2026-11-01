@@ -46,13 +46,21 @@ A interface deve simular a tarefa de ponta a ponta, com simulação de input de 
 
 ## Funcionalidade escolhida
 
-**Meu Desempenho**: painel de desempenho com **simulador de notas** no App Inatel (gráficos de notas por avaliação, barra de frequência com limite de faltas, "quanto preciso tirar na P3?", alertas de risco, salvar meta). Decidido com o aluno; o resto (detalhes, regras, visual) fica a critério do Claude, sem complicar demais.
+**Meu Desempenho**: **simulador de notas** no App Inatel ("quanto preciso tirar na NP2?", média projetada, gráfico, frequência e faltas restantes, alertas de risco, salvar meta). Decidido com o aluno; o resto (detalhes, regras, visual) fica a critério do Claude, sem complicar demais.
 
-- Persona: Lucas Almeida, 3º período, no limite em Cálculo II.
-- Regras assumidas (confirmar com as reais do Inatel): nota 0-100, aprovação com média >= 60, frequência mínima 75%, pesos P1 30 / P2 30 / P3 30 / Trabalho 10.
+- Persona: Lucas Almeida, 3º período, no limite em M210 Otimização I.
+- Regras assumidas (confirmar com as reais do Inatel): notas 0-100 por avaliação, média = 35% NP1 + 35% NP2 + 30% média dos labs (L1-L3), aprovação com média >= 60, frequência mínima 75%.
 - Extensão opcional para o projeto final: botão "Agendar monitoria" quando o aluno estiver em risco.
 - Docs: `3-projeto-final/01-...` (persona e user story), `3-projeto-final/02-...` (análise da tarefa, notação da aula com planos `1 > 2 / 3`), `1-fluxo-de-informacao/diagrama-de-classes.md` (diagrama em Mermaid, fonte única).
 - Formato do professor: análise hierárquica numerada (0, 1, 1.1...) com planos; diagrama de classes com `+/-/#`, multiplicidade e composição/agregação. Exemplo da aula (não repetir): reserva de armário do Fab Lab.
+
+## Como é o App Inatel real (prints do aluno, tema escuro)
+
+- Navegação por **menu lateral** (hambúrguer), sem barra inferior. A tela inicial é *Avisos*. Seções do menu: Mensagens Acadêmicas (Avisos), Aproveitamento Escolar (Notas, Frequência, Material Didático, Plano de Ensino, Histórico, Coeficientes), Atividades Complementares, Calendários e Horários (Provas, Horários de Aula...), Financeiro (Tesouraria), Outras Opções (Requerimentos...).
+- Barra superior azul-marinho (☰ + título + 🔍), fundo cinza-escuro/preto, botão azul "Autenticar"/"Outro Usuário", fonte Roboto. Tabelas Avaliação | Nota (coluna de avaliação azul-petróleo, nota cinza). Listas com `›` (ex.: Plano de Ensino > Disciplinas Matriculadas). Alternador Data/Turma na tela Provas.
+- A tela **Notas** já lista as disciplinas em cards (ex.: "C216 - Sistemas Distribuídos") com tabela de avaliações (NP1, L1, L2, L3...) e um **ícone de gráfico** por disciplina. Por isso o diferencial da nova funcionalidade é a **simulação**, não só o gráfico.
+- Os prints não estão no repositório (contêm dados pessoais do aluno).
+- O enunciado do wireframe é ambíguo; interpretação adotada: telas da nova funcionalidade **mais** as telas existentes que levam a ela (menu lateral, Notas), com elementos novos marcados como NOVO.
 
 ## Estado atual
 
@@ -60,8 +68,10 @@ A interface deve simular a tarefa de ponta a ponta, com simulação de input de 
 - [x] User Story
 - [x] Análise da Tarefa (rascunho em `3-projeto-final/02-analise-da-tarefa.md`)
 - [x] Diagrama de classes (entrega 1): `1-fluxo-de-informacao/diagrama-de-classes.pdf`, gerado por `build.py` + Chrome headless
-- [x] Wireframes (entrega 2): `2-wireframe/wireframe.pdf`, gerado a partir de `wireframe.html` (HTML/CSS escrito à mão, impresso com Chrome headless). 8 telas em 2 páginas A4 paisagem. A barra inferior do app (Início/Aulas/Agenda/Perfil) e os atalhos da Home são suposições, não vieram de prints do app real.
-- [ ] Interface publicada (Codepen/GitHub Pages), código em `3-projeto-final/interface/`, HTML estático + Chart.js
+- [x] Wireframes (entrega 2), duas versões em `2-wireframe/`, ambas com 8 telas em 2 páginas A4 paisagem, geradas de HTML escrito à mão impresso com Chrome headless:
+  - `wireframe.pdf` (v1): tinha barra inferior e Home inventadas; o aluno gostou e pediu para **não sobrescrever**.
+  - `wireframe-v2.pdf`: baseada no app real (menu lateral, tela Notas, padrão do Plano de Ensino). Mais fiel ao app; é a recomendada para a entrega.
+- [ ] Interface publicada (Codepen/GitHub Pages), código em `3-projeto-final/interface/`, HTML estático + Chart.js, tema escuro igual ao app
 - [ ] PDF final (entrega 3)
 
 Para regerar o PDF da entrega 1: `python 1-fluxo-de-informacao/build.py` e imprimir o HTML em PDF com Chrome headless (`--print-to-pdf`, caminhos absolutos).

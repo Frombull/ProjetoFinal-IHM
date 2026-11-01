@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Entrega 2 - Wireframe v2</title>
+<style>
+@page { size: A4 landscape; margin: 10mm; }
+* { box-sizing: border-box; }
+body { font-family: Arial, Helvetica, sans-serif; color:#000; margin:0; }
+.page { height: 189mm; overflow: hidden; page-break-after: always; }
+.page:last-child { page-break-after: auto; }
+header { border-bottom: 3px solid #000; padding-bottom:4px; margin-bottom:8px; display:flex; justify-content:space-between; align-items:flex-end; }
+h1 { font-size:17px; margin:0; }
+.meta { font-size:10.5px; text-align:right; }
+.sub { font-size:10.5px; margin:0 0 8px; }
+.row { display:flex; align-items:flex-start; }
+.cell { width:215px; flex:none; }
+.cap { font-size:10.5px; font-weight:bold; margin-bottom:4px; height:26px; }
+.cap span { font-weight:normal; display:block; font-size:9px; }
+.arr { width:48px; flex:none; margin-top:170px; text-align:center; font-size:7.5px; line-height:1.15; overflow-wrap:anywhere; padding:0 1px; }
+.arr b { display:block; font-size:22px; line-height:1; }
+.gap { width:48px; flex:none; }
+.ou { width:48px; flex:none; margin-top:170px; text-align:center; font-size:9px; font-weight:bold; }
+.notes { font-size:8.5px; margin:5px 0 0; padding-left:0; list-style:none; }
+.notes li { margin-bottom:2px; }
+.notes b { display:inline-block; width:12px; height:12px; border-radius:50%; background:#000; color:#fff; text-align:center; line-height:12px; font-size:8px; margin-right:3px; }
+
+/* moldura do celular */
+.phone { width:215px; height:395px; border:2px solid #000; border-radius:18px; position:relative; overflow:hidden; display:flex; flex-direction:column; background:#fff; }
+.status { height:14px; font-size:7px; display:flex; justify-content:space-between; padding:3px 10px 0; }
+.appbar { height:28px; border-bottom:1.5px solid #000; background:#ddd; display:flex; align-items:center; padding:0 8px; font-weight:bold; font-size:10px; gap:8px; }
+.body { flex:1; padding:7px; display:flex; flex-direction:column; gap:5px; font-size:8.5px; overflow:hidden; position:relative; }
+.body.flat { padding:0; gap:0; }
+
+/* componentes */
+.box { border:1.5px solid #000; padding:5px; border-radius:4px; }
+.x { width:22px; height:22px; border:1.5px solid #000; flex:none;
+     background: linear-gradient(to top right, transparent calc(50% - 1px), #000 50%, transparent calc(50% + 1px)),
+                 linear-gradient(to bottom right, transparent calc(50% - 1px), #000 50%, transparent calc(50% + 1px)); }
+.ic { width:12px; height:12px; border:1.2px solid #000; flex:none; }
+.btn { border:1.5px solid #000; border-radius:14px; text-align:center; padding:5px; font-weight:bold; position:relative; }
+.btn.p { background:#000; color:#fff; }
+.btn.dis { border-style:dashed; color:#777; border-color:#777; background:#fff; }
+.chip { border:1px solid #000; border-radius:8px; padding:0 5px; font-size:7px; white-space:nowrap; }
+.chip.f { background:#000; color:#fff; }
+.novo { background:#000; color:#fff; font-size:6.5px; font-weight:bold; padding:1px 4px; border-radius:2px; letter-spacing:.3px; white-space:nowrap; }
+.hl { border-width:3px; background:#eee; }
+.flex { display:flex; align-items:center; gap:6px; }
+.sp { justify-content:space-between; }
+.grow { flex:1; }
+.mut { color:#444; font-size:7.5px; }
+.h { font-weight:bold; font-size:9px; position:relative; }
+.big { font-size:15px; font-weight:bold; }
+.alert { border:3px solid #000; padding:5px; display:flex; gap:5px; align-items:flex-start; background:#ddd; position:relative; }
+.alert .i { width:14px; height:14px; border:2px solid #000; border-radius:50%; text-align:center; font-weight:bold; font-size:9px; line-height:11px; flex:none; background:#fff; }
+.chart { display:flex; align-items:flex-end; gap:8px; height:40px; border-left:1.5px solid #000; border-bottom:1.5px solid #000; padding:0 6px; position:relative; }
+.col { flex:1; display:flex; flex-direction:column; justify-content:flex-end; align-items:center; height:100%; }
+.col div { width:100%; background:#999; border:1px solid #000; }
+.col div.hyp { background:#fff; border-style:dashed; border-width:1.5px; }
+.lbl { display:flex; gap:8px; padding:0 6px; font-size:7px; }
+.lbl span { flex:1; text-align:center; }
+.line { position:absolute; left:0; right:0; border-top:1.5px dashed #000; }
+.line em { position:absolute; right:0; top:-9px; font-size:6.5px; font-style:normal; background:#fff; }
+.slider { height:4px; background:#000; position:relative; margin:8px 5px 3px; }
+.slider i { position:absolute; width:13px; height:13px; border-radius:50%; background:#fff; border:2px solid #000; top:-6px; }
+.stepper { display:flex; align-items:center; gap:6px; }
+.stepper span.b { border:1.5px solid #000; width:20px; height:20px; text-align:center; line-height:17px; font-weight:bold; font-size:12px; border-radius:4px; }
+.stepper .v { border:1.5px solid #000; flex:1; text-align:center; padding:2px; font-weight:bold; font-size:12px; border-radius:4px; }
+.n { position:absolute; width:13px; height:13px; border-radius:50%; background:#000; color:#fff; font-size:8px; font-weight:bold; text-align:center; line-height:13px; z-index:5; }
+.dim { position:absolute; inset:0; background:rgba(0,0,0,.35); }
+.modal { position:absolute; left:14px; right:14px; top:95px; background:#fff; border:2px solid #000; border-radius:8px; padding:10px; display:flex; flex-direction:column; gap:6px; z-index:3; }
+
+/* padrões do app real */
+.tbl { border:1.5px solid #000; }
+.tr { display:flex; }
+.tr > div { padding:3px 4px; border-top:1px solid #000; }
+.tr > div:first-child { width:42%; border-right:1px solid #000; background:#ccc; text-align:center; }
+.tr > div:last-child { flex:1; text-align:center; background:#eee; }
+.tr.hd > div { font-weight:bold; background:#aaa; border-top:0; }
+.card-h { display:flex; border:1.5px solid #000; background:#ddd; }
+.card-h .t { flex:1; padding:5px; font-weight:bold; }
+.card-h .a { border-left:1.5px solid #000; padding:3px 5px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; font-size:6.5px; position:relative; }
+.list { border-top:1px solid #000; }
+.list .li { display:flex; justify-content:space-between; align-items:center; padding:6px 8px; border-bottom:1px solid #000; background:#eee; }
+.list .li.hl2 { background:#ccc; font-weight:bold; border-left:4px solid #000; }
+.band { text-align:center; padding:6px; font-weight:bold; background:#bbb; font-size:9.5px; }
+.drawer { position:absolute; left:0; top:0; bottom:0; width:70%; background:#fff; border-right:2px solid #000; z-index:2; display:flex; flex-direction:column; }
+.drawer .prof { background:#bbb; padding:8px; border-bottom:1.5px solid #000; }
+.drawer .sec { padding:5px 8px 2px; font-size:7px; color:#444; border-top:1px solid #000; }
+.drawer .it { display:flex; align-items:center; gap:7px; padding:4px 8px; font-size:8.5px; }
+.drawer .it.new { background:#ccc; font-weight:bold; border-left:4px solid #000; padding-left:4px; position:relative; }
+.leg { font-size:9px; line-height:1.7; }
+.leg .sw { display:inline-block; width:22px; height:10px; border:1px solid #000; vertical-align:middle; margin-right:5px; }
+</style></head><body>
+
+<!-- ========== PÁGINA 1 ========== -->
+<section class="page">
+<header>
+  <h1>Wireframe: Meu Desempenho (App Inatel)</h1>
+  <div class="meta"><b>Marco Di Toro</b> | GES | Matrícula 150<br>S205 Interface Homem-Máquina | Prof. Raphael Pereira</div>
+</header>
+<p class="sub">Wireframe básico (baixa fidelidade) com anotações, seguindo a estrutura do App Inatel atual (menu lateral, barra superior, tabelas de notas). Elementos marcados com <span class="novo">NOVO</span> pertencem à nova funcionalidade; o restante já existe no app. Telas 1 a 3: caminho pelo menu. Tela 4: caminho alternativo pela tela Notas.</p>
+
+<div class="row">
+
+  <!-- TELA 1: MENU LATERAL -->
+  <div class="cell">
+    <div class="cap">Tela 1: Menu lateral<span>existente, com novo item</span></div>
+    <div class="phone">
+      <div class="status"><span>06:11</span><span>▮▮▮ ▭</span></div>
+      <div class="body flat">
+        <div class="appbar"><span>☰</span><span class="grow">Avisos</span><span>🔍</span></div>
+        <div class="box" style="margin:6px;border-radius:0"><b>CRA</b> · Pendências comuns…</div>
+        <div class="box" style="margin:0 6px;border-radius:0"><b>CRA</b> · Transferência interna…</div>
+        <div class="dim"></div>
+        <div class="drawer">
+          <div class="prof">
+            <div class="x" style="border-radius:50%;width:20px;height:20px;background-color:#fff"></div>
+            <div style="margin-top:3px;font-weight:bold;font-size:8.5px">Lucas Almeida</div>
+            <div class="mut">lucas@ges.inatel.br</div>
+          </div>
+          <div class="sec">Mensagens Acadêmicas</div>
+          <div class="it"><span class="ic"></span>Avisos</div>
+          <div class="sec">Aproveitamento Escolar</div>
+          <div class="it"><span class="ic"></span>Notas</div>
+          <div class="it"><span class="ic"></span>Frequência</div>
+          <div class="it new"><span class="n" style="top:-6px;right:-6px">1</span><span class="ic" style="background:#000"></span>Meu Desempenho&nbsp;<span class="novo">NOVO</span></div>
+          <div class="it"><span class="ic"></span>Material Didático</div>
+          <div class="it"><span class="ic"></span>Plano de Ensino</div>
+          <div class="it"><span class="ic"></span>Histórico</div>
+          <div class="it"><span class="ic"></span>Coeficientes</div>
+          <div class="sec">Atividades Complementares</div>
+          <div class="it"><span class="ic"></span>Avaliações</div>
+        </div>
+      </div>
+    </div>
+    <ul class="notes">
+      <li><b>1</b>Novo item na seção <i>Aproveitamento Escolar</i>, perto de Notas e Frequência, onde o aluno já procura esse tipo de informação.</li>
+      <li>Cabeçalho do perfil e demais itens seguem o app atual.</li>
+    </ul>
+  </div>
+
+  <div class="arr"><b>→</b>toca em Meu Desempenho</div>
+
+  <!-- TELA 2: ESCOLHER DISCIPLINA -->
+  <div class="cell">
+    <div class="cap">Tela 2: Escolher disciplina<span>nova, no padrão da tela Plano de Ensino</span></div>
+    <div class="phone">
+      <div class="status"><span>06:11</span><span>▮▮▮ ▭</span></div>
+      <div class="appbar"><span>☰</span><span class="grow">Meu Desempenho</span></div>
+      <div class="body flat">
+        <div class="band">Disciplinas Matriculadas</div>
+        <div class="list">
+          <div class="li"><span>H003 - Humanidades…</span><span>›</span></div>
+          <div class="li"><span>H004 - Ciências do Ambiente</span><span>›</span></div>
+          <div class="li hl2" style="position:relative"><span class="n" style="top:-6px;right:14px">1</span><span>M210 - Otimização I</span><span class="chip f">Em risco</span></div>
+          <div class="li"><span>P108 - Otimização II</span><span class="chip">Em dia</span></div>
+          <div class="li"><span>C14 - Eng. de Software</span><span class="chip">Em dia</span></div>
+          <div class="li"><span>C216 - Sistemas Distribuídos</span><span class="chip">Em dia</span></div>
+          <div class="li"><span>S05 - Interação Homem Máquina</span><span class="chip">Em dia</span></div>
+          <div class="li"><span>T106 - Gerência, QoS e Seg…</span><span class="chip">Em dia</span></div>
+        </div>
+      </div>
+    </div>
+    <ul class="notes">
+      <li><b>1</b>Lista no mesmo padrão do Plano de Ensino. Cada linha ganha uma etiqueta de situação (<span class="novo">NOVO</span>); a disciplina em risco fica em destaque.</li>
+    </ul>
+  </div>
+
+  <div class="arr"><b>→</b>toca em M210</div>
+
+  <!-- TELA 3: SIMULADOR -->
+  <div class="cell">
+    <div class="cap">Tela 3: Simulador<span>nova: entrada, cálculo e feedback na hora</span></div>
+    <div class="phone">
+      <div class="status"><span>06:11</span><span>▮▮▮ ▭</span></div>
+      <div class="appbar"><span>←</span><span class="grow">Meu Desempenho</span></div>
+      <div class="body">
+        <div class="h">M210 A - Otimização I</div>
+        <div class="tbl">
+          <div class="tr hd"><div>Avaliação</div><div>Nota</div></div>
+          <div class="tr"><div>NP1</div><div>48</div></div>
+          <div class="tr"><div>Labs (L1–L3)</div><div>65</div></div>
+          <div class="tr"><div>NP2</div><div style="background:#fff;border:2px dashed #000"><b>68</b> <span class="mut">(simulada)</span></div></div>
+        </div>
+        <div class="h">Nota simulada na NP2<span class="n" style="top:-2px;right:0">1</span></div>
+        <div class="slider"><i style="left:68%"></i></div>
+        <div class="flex sp mut" style="margin-top:-1px"><span>0</span><span>100</span></div>
+        <div class="flex sp"><div class="h" style="width:60px">Meta de média<span class="n" style="top:-9px;right:-10px">2</span></div><div class="stepper grow"><span class="b">−</span><span class="v">60</span><span class="b">+</span></div></div>
+        <div class="box hl" style="position:relative"><span class="n" style="top:-7px;right:-5px">3</span>
+          <div class="flex sp"><span>Nota necessária na NP2</span><b class="big">68</b></div>
+          <div class="flex sp"><span>Média projetada</span><b class="big">60</b><span class="chip f">Aprovado</span></div>
+        </div>
+        <div class="chart">
+          <div class="line" style="bottom:60%"><em>60</em></div>
+          <div class="col"><div style="height:48%"></div></div>
+          <div class="col"><div style="height:65%"></div></div>
+          <div class="col"><div class="hyp" style="height:68%"></div></div>
+          <div class="col"><div style="height:60%;background:#555"></div></div>
+        </div>
+        <div class="lbl"><span>NP1</span><span>Labs</span><span>NP2 (sim.)</span><span>Média</span></div>
+        <div class="mut">Faltas: 8 · frequência 80% · pode faltar mais <b>2 aulas</b></div>
+        <div class="btn p"><span class="n" style="top:-6px;right:-4px">4</span>Salvar meta</div>
+      </div>
+    </div>
+    <ul class="notes">
+      <li><b>1</b>Slider da nota simulada; o restante atualiza em tempo real.</li>
+      <li><b>2</b>Meta de média (padrão 60).</li>
+      <li><b>3</b>Nota necessária, média projetada e situação.</li>
+      <li><b>4</b>Salva a meta (tela 6).</li>
+    </ul>
+  </div>
+
+  <div class="ou">ou<br>(atalho)</div>
+
+  <!-- TELA 4: NOTAS -->
+  <div class="cell">
+    <div class="cap">Tela 4: Notas<span>existente, com novo botão → tela 3</span></div>
+    <div class="phone">
+      <div class="status"><span>06:11</span><span>▮▮▮ ▭</span></div>
+      <div class="appbar"><span>☰</span><span class="grow">Notas</span><span>🔍</span></div>
+      <div class="body" style="background:#ddd">
+        <div style="background:#fff;position:relative">
+          <div class="card-h">
+            <div class="t">M210 A - Otimização I</div>
+            <div class="a"><div class="ic" style="background:#999"></div>gráfico</div>
+            <div class="a" style="background:#000;color:#fff;position:relative"><span class="n" style="top:-6px;left:-7px;background:#fff;color:#000;border:1.5px solid #000">1</span><div class="ic" style="border-color:#fff"></div>simular</div>
+          </div>
+          <div class="tr hd" style="border:1px solid #000;border-top:0"><div>Avaliação</div><div>Nota</div></div>
+          <div class="tr"><div>NP1</div><div>48</div></div>
+          <div class="tr"><div>L1</div><div>70</div></div>
+          <div class="tr"><div>L2</div><div>65</div></div>
+          <div class="tr"><div>L3</div><div>60</div></div>
+          <div class="tr"><div>NP2</div><div>-</div></div>
+        </div>
+        <div style="background:#fff">
+          <div class="card-h">
+            <div class="t">C216 - Sistemas Distribuídos</div>
+            <div class="a"><div class="ic" style="background:#999"></div>gráfico</div>
+            <div class="a" style="background:#000;color:#fff"><div class="ic" style="border-color:#fff"></div>simular</div>
+          </div>
+          <div class="tr hd" style="border:1px solid #000;border-top:0"><div>Avaliação</div><div>Nota</div></div>
+          <div class="tr"><div>L1</div><div>60</div></div>
+          <div class="tr"><div>L2</div><div>85</div></div>
+        </div>
+      </div>
+    </div>
+    <ul class="notes">
+      <li><b>1</b>Novo botão <i>simular</i> <span class="novo">NOVO</span> em cada card, ao lado do ícone de gráfico que já existe. Abre direto o simulador (tela 3) da disciplina, sem passar pela tela 2.</li>
+      <li>Tabelas e cabeçalho seguem o app atual.</li>
+    </ul>
+  </div>
+
+</div>
+</section>
+
+<!-- ========== PÁGINA 2 ========== -->
+<section class="page">
+<header>
+  <h1>Wireframe: Meu Desempenho (App Inatel)</h1>
+  <div class="meta"><b>Marco Di Toro</b> | GES | Matrícula 150<br>Página 2 de 2</div>
+</header>
+<p class="sub">Telas 5 a 8: situações alternativas e de erro (meta inatingível, aviso de faltas) e confirmações. São ramificações da tela 3; a origem de cada uma está abaixo do título.</p>
+
+<div class="row">
+
+  <!-- TELA 5 -->
+  <div class="cell">
+    <div class="cap">Tela 5: Meta inatingível<span>variação da tela 3: meta impossível</span></div>
+    <div class="phone">
+      <div class="status"><span>06:11</span><span>▮▮▮ ▭</span></div>
+      <div class="appbar"><span>←</span><span class="grow">Meu Desempenho</span></div>
+      <div class="body">
+        <div class="h">M210 A - Otimização I</div>
+        <div class="tbl">
+          <div class="tr hd"><div>Avaliação</div><div>Nota</div></div>
+          <div class="tr"><div>NP1</div><div>48</div></div>
+          <div class="tr"><div>Labs (L1–L3)</div><div>65</div></div>
+          <div class="tr"><div>NP2</div><div style="background:#fff;border:2px dashed #000"><b>100</b> <span class="mut">(simulada)</span></div></div>
+        </div>
+        <div class="h">Nota simulada na NP2</div>
+        <div class="slider"><i style="left:100%;margin-left:-13px"></i></div>
+        <div class="flex sp mut" style="margin-top:-1px"><span>0</span><span>100</span></div>
+        <div class="flex sp"><div class="h" style="width:60px">Meta de média</div><div class="stepper grow"><span class="b">−</span><span class="v">90</span><span class="b">+</span></div></div>
+        <div class="alert"><span class="n" style="top:-7px;right:-5px">1</span>
+          <div class="i">!</div>
+          <div><b>Meta inatingível.</b><br>Mesmo com 100 na NP2, a média máxima é <b>71</b>. Tente uma meta de até 71.</div>
+        </div>
+        <div class="box">
+          <div class="flex sp"><span>Nota necessária na NP2</span><b class="big">153</b></div>
+          <div class="mut">Máximo possível: 100</div>
+        </div>
+        <div class="btn"><span class="n" style="top:-6px;right:-4px">2</span>Ajustar meta para 71</div>
+        <div class="btn dis"><span class="n" style="top:-6px;right:-4px">3</span>Salvar meta</div>
+      </div>
+    </div>
+    <ul class="notes">
+      <li><b>1</b>Mensagem em linguagem simples: diz o problema e a solução.</li>
+      <li><b>2</b>Atalho para corrigir com um toque.</li>
+      <li><b>3</b>“Salvar” desabilitado (tracejado) enquanto a meta é impossível.</li>
+    </ul>
+  </div>
+
+  <div class="gap"></div>
+
+  <!-- TELA 6 -->
+  <div class="cell">
+    <div class="cap">Tela 6: Meta salva<span>a partir da tela 3: toca em “Salvar meta”</span></div>
+    <div class="phone">
+      <div class="status"><span>06:11</span><span>▮▮▮ ▭</span></div>
+      <div class="appbar"><span>←</span><span class="grow">Meu Desempenho</span></div>
+      <div class="body">
+        <div class="h">M210 A - Otimização I</div>
+        <div class="tbl">
+          <div class="tr hd"><div>Avaliação</div><div>Nota</div></div>
+          <div class="tr"><div>NP1</div><div>48</div></div>
+          <div class="tr"><div>Labs (L1–L3)</div><div>65</div></div>
+          <div class="tr"><div>NP2</div><div>68 (simulada)</div></div>
+        </div>
+        <div class="box"><div class="flex sp"><span>Média projetada</span><b class="big">60</b></div></div>
+        <div class="dim"></div>
+        <div class="modal"><span class="n" style="top:-7px;right:-5px">1</span>
+          <div class="flex"><div class="x" style="border-radius:50%"></div><b style="font-size:10px">Meta salva!</b></div>
+          <div>Meta <b>60</b> em Otimização I.<br>Você precisa de <b>68</b> na NP2.</div>
+          <div class="btn p">Ver notas</div>
+          <div class="btn"><span class="n" style="top:-6px;right:-4px">2</span>Fechar</div>
+        </div>
+      </div>
+    </div>
+    <ul class="notes">
+      <li><b>1</b>Diálogo de confirmação com o resumo da meta (visibilidade do status).</li>
+      <li><b>2</b>“Ver notas” leva à tela Notas (tela 4); “Fechar” mantém o simulador.</li>
+    </ul>
+  </div>
+
+  <div class="gap"></div>
+
+  <!-- TELA 7 -->
+  <div class="cell">
+    <div class="cap">Tela 7: Sair sem salvar?<span>a partir da tela 3: toca em “←” sem salvar</span></div>
+    <div class="phone">
+      <div class="status"><span>06:11</span><span>▮▮▮ ▭</span></div>
+      <div class="appbar"><span>←</span><span class="grow">Meu Desempenho</span></div>
+      <div class="body">
+        <div class="h">M210 A - Otimização I</div>
+        <div class="tbl">
+          <div class="tr hd"><div>Avaliação</div><div>Nota</div></div>
+          <div class="tr"><div>NP1</div><div>48</div></div>
+          <div class="tr"><div>Labs (L1–L3)</div><div>65</div></div>
+          <div class="tr"><div>NP2</div><div>75 (simulada)</div></div>
+        </div>
+        <div class="box"><div class="flex sp"><span>Média projetada</span><b class="big">63</b></div></div>
+        <div class="dim"></div>
+        <div class="modal"><span class="n" style="top:-7px;right:-5px">1</span>
+          <b style="font-size:10px">Sair sem salvar?</b>
+          <div>Sua meta não foi salva e será perdida.</div>
+          <div class="btn p">Continuar editando</div>
+          <div class="btn"><span class="n" style="top:-6px;right:-4px">2</span>Sair</div>
+        </div>
+      </div>
+    </div>
+    <ul class="notes">
+      <li><b>1</b>Só aparece se houve alteração não salva (prevenção de erros).</li>
+      <li><b>2</b>“Sair” volta para a tela 2; a ação segura fica em destaque.</li>
+    </ul>
+  </div>
+
+  <div class="gap"></div>
+
+  <!-- TELA 8 -->
+  <div class="cell">
+    <div class="cap">Tela 8: Aviso de faltas<span>variação da tela 3: faltas perto do limite</span></div>
+    <div class="phone">
+      <div class="status"><span>06:11</span><span>▮▮▮ ▭</span></div>
+      <div class="appbar"><span>←</span><span class="grow">Meu Desempenho</span></div>
+      <div class="body">
+        <div class="h">M210 A - Otimização I</div>
+        <div class="alert"><span class="n" style="top:-7px;right:-5px">1</span>
+          <div class="i">!</div>
+          <div><b>Atenção às faltas.</b><br>Você só pode faltar mais <b>1 aula</b>. Com 2 faltas a mais, reprova por frequência.</div>
+        </div>
+        <div class="tbl">
+          <div class="tr hd"><div>Avaliação</div><div>Nota</div></div>
+          <div class="tr"><div>NP1</div><div>48</div></div>
+          <div class="tr"><div>Labs (L1–L3)</div><div>65</div></div>
+          <div class="tr"><div>NP2</div><div style="background:#fff;border:2px dashed #000"><b>68</b> <span class="mut">(simulada)</span></div></div>
+        </div>
+        <div class="h">Frequência</div>
+        <div style="height:12px;border:1px solid #000;position:relative"><i style="display:block;height:100%;width:77%;background:#999"></i><u style="position:absolute;top:-3px;bottom:-3px;left:75%;border-left:2px solid #000"></u></div>
+        <div class="flex sp mut"><span>77,5% · 9 faltas</span><span>mínimo 75%</span></div>
+        <div class="box" style="position:relative"><span class="n" style="top:-7px;right:-5px">2</span>
+          <div class="h">Próximas aulas</div>
+          <div class="flex sp mut"><span>Qui · 19:00</span><span class="chip">presença importante</span></div>
+          <div class="flex sp mut"><span>Sex · 19:00</span><span class="chip">presença importante</span></div>
+        </div>
+        <div class="btn p">Salvar meta</div>
+      </div>
+    </div>
+    <ul class="notes">
+      <li><b>1</b>Banner de alerta no topo quando restam 1 ou 0 faltas.</li>
+      <li><b>2</b>Lembra as próximas aulas, para o aluno planejar a presença.</li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="leg" style="margin-top:10px; border-top:1.5px solid #000; padding-top:4px;">
+  <b>Legenda:</b>
+  <span class="novo" style="margin:0 4px 0 6px">NOVO</span>elemento da nova funcionalidade
+  <span class="sw" style="background:#999;margin-left:12px"></span>dado obtido
+  <span class="sw" style="border-style:dashed;border-width:1.5px;margin-left:12px"></span>valor simulado ou ação desabilitada
+  <span class="x" style="display:inline-block;width:12px;height:12px;vertical-align:middle;margin:0 4px 0 12px"></span>ícone ou imagem (placeholder)
+  <span class="n" style="position:static;display:inline-block;margin:0 4px 0 12px">1</span>anotação numerada
+</div>
+</section>
+
+</body></html>
