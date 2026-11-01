@@ -51,7 +51,7 @@ A interface deve simular a tarefa de ponta a ponta, com simulação de input de 
 - Persona: Lucas Almeida, 3º período, no limite em M210 Otimização I.
 - Regras assumidas (confirmar com as reais do Inatel): notas 0-100 por avaliação, média = 35% NP1 + 35% NP2 + 30% média dos labs (L1-L3), aprovação com média >= 60, frequência mínima 75%.
 - Extensão opcional para o projeto final: botão "Agendar monitoria" quando o aluno estiver em risco.
-- Docs: `3-projeto-final/01-...` (persona e user story), `3-projeto-final/02-...` (análise da tarefa, notação da aula com planos `1 > 2 / 3`), `1-fluxo-de-informacao/diagrama-de-classes.md` (diagrama em Mermaid, fonte única).
+- Docs: `3-projeto-final/01-...` (persona e user story), `3-projeto-final/02-...` (análise da tarefa, notação da aula com planos `1 > 2 / 3`; alinhada com a interface), `1-fluxo-de-informacao/diagrama-de-classes.md` (diagrama em Mermaid, fonte única).
 - Formato do professor: análise hierárquica numerada (0, 1, 1.1...) com planos; diagrama de classes com `+/-/#`, multiplicidade e composição/agregação. Exemplo da aula (não repetir): reserva de armário do Fab Lab.
 
 ## Como é o App Inatel real (prints do aluno, tema escuro)
@@ -71,8 +71,9 @@ A interface deve simular a tarefa de ponta a ponta, com simulação de input de 
 - [x] Wireframes (entrega 2), duas versões em `2-wireframe/`, ambas com 8 telas em 2 páginas A4 paisagem, geradas de HTML escrito à mão impresso com Chrome headless:
   - `wireframe.pdf` (v1): tinha barra inferior e Home inventadas; o aluno gostou e pediu para **não sobrescrever**.
   - `wireframe-v2.pdf`: baseada no app real (menu lateral, tela Notas, padrão do Plano de Ensino). Mais fiel ao app; é a recomendada para a entrega.
-- [ ] Interface publicada (Codepen/GitHub Pages), código em `3-projeto-final/interface/`, HTML estático + Chart.js, tema escuro igual ao app
-- [ ] PDF final (entrega 3)
+- [x] Interface (entrega 3), codigo em `3-projeto-final/interface/` (HTML/CSS/JS puros + Chart.js em `vendor/`, sem build). Tema escuro do app, menu lateral, telas Avisos/Notas (com botao "simular")/lista de disciplinas/simulador (sliders, meta, alertas, 3 graficos, faltas, salvar meta em localStorage, confirmacao ao sair). `js/model.js` espelha o diagrama de classes (mesmos nomes). Painel lateral so no desktop (roteiro de teste, tamanhos de tela). Deep links: `#/notas`, `#/desempenho`, `#/simulador/M210`.
+- [x] PDF final (entrega 3): `3-projeto-final/projeto-final.pdf` (capa, User Story, Analise da Tarefa, Fluxo de Informacao + as 2 paginas do `wireframe-v2.pdf`). Gerado por `python 3-projeto-final/build.py` (precisa de Chrome e pypdf). O link do projeto fica na constante `LINK` do script.
+- [ ] Publicacao: GitHub Pages por workflow (`.github/workflows/pages.yml`, publica `3-projeto-final/interface`). Pages em repo privado nao funciona no plano gratuito, entao o repo precisa ser publico. Link previsto: https://frombull.github.io/ProjetoFinal-IHM/ (existe tambem uma copia em https://github.com/Frombull/meu-desempenho-inatel, publica, sem Pages ativado).
 
 Para regerar o PDF da entrega 1: `python 1-fluxo-de-informacao/build.py` e imprimir o HTML em PDF com Chrome headless (`--print-to-pdf`, caminhos absolutos).
 
