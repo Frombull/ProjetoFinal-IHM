@@ -60,7 +60,7 @@ A interface deve simular a tarefa de ponta a ponta, com simulação de input de 
 - [x] User Story
 - [x] Análise da Tarefa (rascunho em `3-projeto-final/02-analise-da-tarefa.md`)
 - [x] Diagrama de classes (entrega 1): `1-fluxo-de-informacao/diagrama-de-classes.pdf`, gerado por `build.py` + Chrome headless
-- [ ] Wireframes (entrega 2)
+- [x] Wireframes (entrega 2): `2-wireframe/wireframe.pdf`, gerado a partir de `wireframe.html` (HTML/CSS escrito à mão, impresso com Chrome headless). 8 telas em 2 páginas A4 paisagem. A barra inferior do app (Início/Aulas/Agenda/Perfil) e os atalhos da Home são suposições, não vieram de prints do app real.
 - [ ] Interface publicada (Codepen/GitHub Pages), código em `3-projeto-final/interface/`, HTML estático + Chart.js
 - [ ] PDF final (entrega 3)
 
