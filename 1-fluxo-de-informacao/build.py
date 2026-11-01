@@ -1,7 +1,7 @@
-"""Gera entrega-1-diagrama-de-classes.html a partir de docs/03-diagrama-de-classes.md."""
+"""Gera diagrama-de-classes.html a partir de diagrama-de-classes.md."""
 import html, re, pathlib
 root = pathlib.Path(__file__).resolve().parent
-md = (root.parent / 'docs/03-diagrama-de-classes.md').read_text(encoding='utf-8')
+md = (root / 'diagrama-de-classes.md').read_text(encoding='utf-8')
 diagram = html.escape(re.search(r'```mermaid\n(.*?)```', md, re.S).group(1), quote=False)
 page = f'''<!doctype html>
 <html lang="pt-BR"><head><meta charset="utf-8"><title>Entrega 1 - Diagrama de Classes</title>
@@ -26,4 +26,4 @@ p {{ font-size:11px; margin:3px 0; }}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
 <script>mermaid.initialize({{startOnLoad:true, theme:'neutral'}});</script>
 </body></html>'''
-(root / 'entrega-1-diagrama-de-classes.html').write_text(page, encoding='utf-8')
+(root / 'diagrama-de-classes.html').write_text(page, encoding='utf-8')

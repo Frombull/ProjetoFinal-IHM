@@ -51,23 +51,27 @@ A interface deve simular a tarefa de ponta a ponta, com simulação de input de 
 - Persona: Lucas Almeida, 3º período, no limite em Cálculo II.
 - Regras assumidas (confirmar com as reais do Inatel): nota 0-100, aprovação com média >= 60, frequência mínima 75%, pesos P1 30 / P2 30 / P3 30 / Trabalho 10.
 - Extensão opcional para o projeto final: botão "Agendar monitoria" quando o aluno estiver em risco.
-- Docs: `docs/01-...` (persona e user story), `docs/02-...` (análise da tarefa, notação da aula com planos `1 > 2 / 3`), `docs/03-...` (diagrama de classes em Mermaid, fonte única).
+- Docs: `3-projeto-final/01-...` (persona e user story), `3-projeto-final/02-...` (análise da tarefa, notação da aula com planos `1 > 2 / 3`), `1-fluxo-de-informacao/diagrama-de-classes.md` (diagrama em Mermaid, fonte única).
 - Formato do professor: análise hierárquica numerada (0, 1, 1.1...) com planos; diagrama de classes com `+/-/#`, multiplicidade e composição/agregação. Exemplo da aula (não repetir): reserva de armário do Fab Lab.
 
 ## Estado atual
 
 - [x] Funcionalidade definida (ideia, persona)
 - [x] User Story
-- [x] Análise da Tarefa (rascunho em `docs/02`)
-- [x] Diagrama de classes (entrega 1): `entregas/entrega-1-diagrama-de-classes.pdf`, gerado por `entregas/build.py` + Chrome headless
+- [x] Análise da Tarefa (rascunho em `3-projeto-final/02-analise-da-tarefa.md`)
+- [x] Diagrama de classes (entrega 1): `1-fluxo-de-informacao/diagrama-de-classes.pdf`, gerado por `build.py` + Chrome headless
 - [ ] Wireframes (entrega 2)
-- [ ] Interface publicada (Codepen/GitHub Pages), código em `app/`, HTML estático + Chart.js
+- [ ] Interface publicada (Codepen/GitHub Pages), código em `3-projeto-final/interface/`, HTML estático + Chart.js
 - [ ] PDF final (entrega 3)
 
-Para regerar o PDF da entrega 1: `python entregas/build.py` e imprimir o HTML em PDF com Chrome headless (`--print-to-pdf`, caminhos absolutos).
+Para regerar o PDF da entrega 1: `python 1-fluxo-de-informacao/build.py` e imprimir o HTML em PDF com Chrome headless (`--print-to-pdf`, caminhos absolutos).
 
 ## Convenções
 
 - Branch principal: `master`.
 - Documentação e textos em português (pt-BR).
-- Material de aula fica em `conteudo-de-aula/` (somente referência). Documentos de trabalho em `docs/`, código da interface em `app/` (criar quando necessário).
+- Uma pasta por entrega, com tudo dela dentro (fontes, HTML, PDF final):
+  - `1-fluxo-de-informacao/`: diagrama de classes
+  - `2-wireframe/`: wireframes
+  - `3-projeto-final/`: persona, user story, análise da tarefa, `interface/` (código publicado) e o PDF final
+- Material de aula fica em `conteudo-de-aula/` (somente referência).
