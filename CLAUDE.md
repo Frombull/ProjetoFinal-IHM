@@ -4,6 +4,12 @@ Projeto final da matéria **Interface Homem-Máquina** (Engenharia de Software, 
 
 **Objetivo:** desenvolver e documentar uma **nova funcionalidade para o App Inatel**, respeitando a identidade visual do app (cores, tipografia, espaçamentos, componentes responsivos padrão). Pode adaptar o exemplo prático feito em aula, desde que seja coerente com as necessidades dos usuários (persona).
 
+## Aluno
+
+- Nome: Marco Di Toro
+- Curso: GES (Engenharia de Software)
+- Matrícula: 150
+
 ## Entregas
 
 | # | Entrega | Vencimento | Formato | Pasta de contexto |
