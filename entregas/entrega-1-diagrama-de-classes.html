@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Entrega 1 - Diagrama de Classes</title>
+<style>
+@page { size: A4 landscape; margin: 10mm; }
+body { font-family: Arial, Helvetica, sans-serif; color:#111; margin:0; }
+header { border-bottom: 3px solid #0b3c78; padding-bottom:4px; margin-bottom:6px; }
+h1 { font-size:18px; margin:0; color:#0b3c78; }
+.meta { font-size:11px; margin-top:3px; }
+p { font-size:11px; margin:3px 0; }
+.mermaid { text-align:center; }
+.mermaid svg { width:auto !important; max-width:100% !important; max-height:158mm; height:auto; }
+</style></head><body>
+<header>
+<h1>Fluxo de Informação: Diagrama de Classes</h1>
+<div class="meta"><b>Marco Di Toro</b> | GES | Matrícula 150 | S205 Interface Homem-Máquina | Prof. Raphael Pereira</div>
+</header>
+<p><b>Funcionalidade:</b> <i>Meu Desempenho</i>, painel de desempenho com simulador de notas para o App Inatel. O aluno acompanha notas e frequência por disciplina e simula quanto precisa tirar nas avaliações restantes para ser aprovado.</p>
+<div class="mermaid">
+classDiagram
+    direction LR
+    class Aluno {
+        -nome: string
+        -matricula: string
+        -curso: string
+        -periodo: number
+        +listarDisciplinas() DisciplinaCursada[]
+        +definirMeta(disc: DisciplinaCursada, valor: number) Meta
+        +simular(disc: DisciplinaCursada, hipoteses: Avaliacao[]) Cenario
+    }
+
+    class DisciplinaCursada {
+        -codigo: string
+        -nome: string
+        -professor: string
+        -notaMinima: number = 60
+        +calcularMedia() number
+        +pontosRestantes() number
+        +situacao() Situacao
+    }
+
+    class Avaliacao {
+        -nome: string
+        -peso: number
+        -nota: number
+        -data: string
+        -realizada: boolean
+        +registrarNota(nota: number) void
+    }
+
+    class Frequencia {
+        -aulasDadas: number
+        -faltas: number
+        -minimo: number = 75
+        +percentual() number
+        +faltasRestantes() number
+    }
+
+    class Meta {
+        -valor: number = 60
+        -atingivel: boolean
+        +verificar() boolean
+        +salvar() void
+    }
+
+    class Simulador {
+        +notaNecessaria(disc: DisciplinaCursada, meta: Meta) number
+        +projetar(disc: DisciplinaCursada, hipoteses: Avaliacao[]) Cenario
+    }
+
+    class Cenario {
+        -mediaProjetada: number
+        -situacao: Situacao
+        +gerarAlertas() Alerta[]
+    }
+
+    class Alerta {
+        -tipo: string
+        -nivel: string
+        -mensagem: string
+        +exibir() void
+    }
+
+    class Situacao {
+        &lt;&lt;enumeration&gt;&gt;
+        APROVADO
+        EM_RISCO
+        REPROVADO_NOTA
+        REPROVADO_FALTA
+    }
+
+    Aluno "1" --&gt; "0..*" DisciplinaCursada : cursa
+    DisciplinaCursada "1" *-- "1..*" Avaliacao : possui
+    DisciplinaCursada "1" *-- "1" Frequencia : possui
+    Aluno "1" --&gt; "0..*" Meta : define
+    Meta "0..*" --&gt; "1" DisciplinaCursada : refere-se a
+    Simulador ..&gt; DisciplinaCursada : usa
+    Simulador ..&gt; Meta : usa
+    Simulador ..&gt; Cenario : cria
+    Cenario "1" *-- "0..*" Alerta : gera
+    DisciplinaCursada ..&gt; Situacao : retorna
+    Cenario ..&gt; Situacao : retorna
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true, theme:'neutral'});</script>
+</body></html>

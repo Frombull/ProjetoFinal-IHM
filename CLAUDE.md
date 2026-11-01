@@ -44,17 +44,27 @@ A interface deve simular a tarefa de ponta a ponta, com simulação de input de 
 - Input, processamento e feedback (respostas visuais informativas e oportunas)
 - Complexidade da tarefa (mais interações, regras de negócio claras e profundidade rendem mais pontos)
 
+## Funcionalidade escolhida
+
+**Meu Desempenho**: painel de desempenho com **simulador de notas** no App Inatel (gráficos de notas por avaliação, barra de frequência com limite de faltas, "quanto preciso tirar na P3?", alertas de risco, salvar meta). Decidido com o aluno; o resto (detalhes, regras, visual) fica a critério do Claude, sem complicar demais.
+
+- Persona: Lucas Almeida, 3º período, no limite em Cálculo II.
+- Regras assumidas (confirmar com as reais do Inatel): nota 0-100, aprovação com média >= 60, frequência mínima 75%, pesos P1 30 / P2 30 / P3 30 / Trabalho 10.
+- Extensão opcional para o projeto final: botão "Agendar monitoria" quando o aluno estiver em risco.
+- Docs: `docs/01-...` (persona e user story), `docs/02-...` (análise da tarefa, notação da aula com planos `1 > 2 / 3`), `docs/03-...` (diagrama de classes em Mermaid, fonte única).
+- Formato do professor: análise hierárquica numerada (0, 1, 1.1...) com planos; diagrama de classes com `+/-/#`, multiplicidade e composição/agregação. Exemplo da aula (não repetir): reserva de armário do Fab Lab.
+
 ## Estado atual
 
-- [ ] Funcionalidade definida (ideia, persona)
-- [ ] User Story
-- [ ] Análise da Tarefa
-- [ ] Diagrama de classes (entrega 1)
+- [x] Funcionalidade definida (ideia, persona)
+- [x] User Story
+- [x] Análise da Tarefa (rascunho em `docs/02`)
+- [x] Diagrama de classes (entrega 1): `entregas/entrega-1-diagrama-de-classes.pdf`, gerado por `entregas/build.py` + Chrome headless
 - [ ] Wireframes (entrega 2)
-- [ ] Interface publicada (Codepen/GitHub Pages)
+- [ ] Interface publicada (Codepen/GitHub Pages), código em `app/`, HTML estático + Chart.js
 - [ ] PDF final (entrega 3)
 
-Os PDFs de aula (`S13 - Fluxo de Informações`, `Testes de Usabilidade`) ainda não foram lidos em detalhe; consultar antes de produzir as entregas 1 e 2.
+Para regerar o PDF da entrega 1: `python entregas/build.py` e imprimir o HTML em PDF com Chrome headless (`--print-to-pdf`, caminhos absolutos).
 
 ## Convenções
 
